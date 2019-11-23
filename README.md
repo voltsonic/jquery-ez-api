@@ -15,12 +15,12 @@ A simple wrapper around jQuery for a json based api system.
 
 To Dependencies
 ```shell script
-npm i --save version-managerment
+npm i --save jquery-ez-api
 ```
 
 To Development Dependencies:
 ```shell script
-npm i --save-dev version-managerment
+npm i --save-dev jquery-ez-api
 ```
 
 See [Using](./DOCUMENTATION.md) on how to use.
