@@ -4,6 +4,7 @@ import {ResponsesModule} from "../../ResponsesModule";
 
 namespace ApiResponseTypes {
     export type Error = (errorResponse: string|any) => void;
+    export type Success = (data: any) => void;
 }
 
 let configBase = {
@@ -13,12 +14,21 @@ let configBase = {
 
 export class ApiResponse extends ResponsesModule.GenericResponse {
     private cbApiError: ApiResponseTypes.Error[] = [];
+    private cbApiSuccess: ApiResponseTypes.Success[] = [];
 
     attachApiError(callback?: ApiResponseTypes.Error|ApiResponseTypes.Error[]): ApiResponse {
         if(callback)
             (typeof callback === "function")
                 ?this.cbApiError.push(callback)
                 :callback.map(cb => this.cbApiError.push(cb));
+        return this;
+    }
+
+    attachApiSuccess(callback?: ApiResponseTypes.Success|ApiResponseTypes.Success[]): ApiResponse {
+        if(callback)
+            (typeof callback === "function")
+                ?this.cbApiSuccess.push(callback)
+                :callback.map(cb => this.cbApiSuccess.push(cb));
         return this;
     }
 
@@ -39,7 +49,7 @@ export class ApiResponse extends ResponsesModule.GenericResponse {
             ?this.cbFailed.map(cb => cb(this.code))
             :((this.data[configBase.errorKey])
                 ?this.cbApiError.map(cb => cb(this.data[configBase.dataKey]))
-                :this.cbResponse.map(cb => cb(this.data[configBase.dataKey])));
+                :(this.cbResponse.map(cb => cb(this.data)) && this.cbApiSuccess.map(cb => cb(this.data[configBase.dataKey]))));
     }
 
     static wrap(
