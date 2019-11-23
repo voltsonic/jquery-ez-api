@@ -9,12 +9,20 @@ class ApiResponse extends ResponsesModule_1.ResponsesModule.GenericResponse {
     constructor() {
         super(...arguments);
         this.cbApiError = [];
+        this.cbApiSuccess = [];
     }
     attachApiError(callback) {
         if (callback)
             (typeof callback === "function")
                 ? this.cbApiError.push(callback)
                 : callback.map(cb => this.cbApiError.push(cb));
+        return this;
+    }
+    attachApiSuccess(callback) {
+        if (callback)
+            (typeof callback === "function")
+                ? this.cbApiSuccess.push(callback)
+                : callback.map(cb => this.cbApiSuccess.push(cb));
         return this;
     }
     attachFailed(callback) {
@@ -32,7 +40,7 @@ class ApiResponse extends ResponsesModule_1.ResponsesModule.GenericResponse {
             ? this.cbFailed.map(cb => cb(this.code))
             : ((this.data[configBase.errorKey])
                 ? this.cbApiError.map(cb => cb(this.data[configBase.dataKey]))
-                : this.cbResponse.map(cb => cb(this.data[configBase.dataKey])));
+                : (this.cbResponse.map(cb => cb(this.data)) && this.cbApiSuccess.map(cb => cb(this.data[configBase.dataKey]))));
     }
     static wrap(err, code, data, callbackSuccess, callbackApiError, callbackFailed) {
         (new this(err, code, data))

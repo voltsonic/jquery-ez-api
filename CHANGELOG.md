@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.1] - 2019-11-23
+### Added
+- Success api callback for just the data.
+
 ## [0.9.0] - 2019-11-22
 ### Setup
 - First test release with
@@ -21,5 +25,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Project
 
 [Unreleased]: https://github.com/voltsonic/jquery-ez-api/compare/master...HEAD
+[0.9.1]: https://github.com/voltsonic/jquery-ez-api/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/voltsonic/jquery-ez-api/compare/v0.0.1...v0.9.0
 [0.0.1]: https://github.com/voltsonic/jquery-ez-api/releases/tag/v0.0.1

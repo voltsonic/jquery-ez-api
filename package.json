@@ -1,6 +1,6 @@
 {
   "name": "jquery-ez-api",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A simple wrapper around jQuery for a json based api system.",
   "main": "dist/EzApi.js",
   "typings": "dist/EzApi",
