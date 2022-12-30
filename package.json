@@ -30,7 +30,7 @@
     "@types/node": "^12.12.7",
     "badge-management": "^1.0.2",
     "chai": "^4.2.0",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "typescript": "^3.7.2",
     "version-management": "^1.0.7"
   },
